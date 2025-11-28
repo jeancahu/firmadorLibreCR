@@ -20,12 +20,12 @@ makedepends=(
     'maven' # Construir el JAR en local a partir del repo
 )
 
-install=firmadorlibrecr.install # Por ahora no hace nada
+install="${pkgname}.install" # Por ahora no hace nada
 options=(!strip docs libtool emptydirs !zipman staticlibs)
 source=(
     "https://codeberg.org/firmador/firmador/archive/${pkgver}.tar.gz"
-    "firmadorlibrecr.desktop"
-    "firmadorlibrecr-launcher.sh"
+    "${pkgname}.desktop"
+    "${pkgname}-launcher.sh"
 )
 md5sums=(
     'cab4acc53feb73bff375a339267ce7b5'
@@ -44,26 +44,26 @@ package() {
     install -dm755 "$pkgdir/usr/share/applications"
     install -dm755 "$pkgdir/usr/share/icons/hicolor/128x128/apps"
     install -dm755 "$pkgdir/usr/share/java"
-    install -dm755 "$pkgdir/usr/share/doc/firmadorlibrecr/"
-    install -dm755 "$pkgdir/usr/share/licenses/firmadorlibrecr/"
+    install -dm755 "$pkgdir/usr/share/doc/${pkgname}/"
+    install -dm755 "$pkgdir/usr/share/licenses/${pkgname}/"
     install -dm755 "$pkgdir/usr/bin/"
 
     # Instalar el .jar
-    install -Dm644 "${srcdir}/firmador/target/firmador.jar" "$pkgdir/usr/share/java/firmadorlibrecr.jar"
+    install -Dm644 "${srcdir}/firmador/target/firmador.jar" "$pkgdir/usr/share/java/${pkgname}.jar"
 
     # Instalar el .desktop
-    install -Dm644 "${srcdir}/firmadorlibrecr.desktop" "$pkgdir/usr/share/applications/firmadorlibrecr.desktop"
+    install -Dm644 "${srcdir}/${pkgname}.desktop" "$pkgdir/usr/share/applications/${pkgname}.desktop"
 
     # Instalar el icono
-    install -Dm644 "${srcdir}/firmador-128.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/firmadorlibrecr.png"
+    install -Dm644 "${srcdir}/firmador-128.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/${pkgname}.png"
 
     # Launcher utiliza la versión recomendada de OpenJDK 21 si está disponible en el sistema
-    install -Dm755 "${srcdir}/firmadorlibrecr-launcher.sh" "$pkgdir/usr/bin/firmador"
+    install -Dm755 "${srcdir}/${pkgname}-launcher.sh" "$pkgdir/usr/bin/firmador"
 
     # Licencia del software
-    install -Dm644 "${srcdir}/firmador/COPYING" "$pkgdir/usr/share/licenses/firmadorlibrecr/COPYING"
+    install -Dm644 "${srcdir}/firmador/COPYING" "$pkgdir/usr/share/licenses/${pkgname}/COPYING"
 
     # Docs
-    install -Dm644 "${srcdir}/firmador/AUTHORS.md" "$pkgdir/usr/share/doc/firmadorlibrecr/AUTHORS.md"
-    install -Dm644 "${srcdir}/firmador/preguntas-frecuentes.md" "$pkgdir/usr/share/doc/firmadorlibrecr/preguntas-frecuentes.md"
+    install -Dm644 "${srcdir}/firmador/AUTHORS.md" "$pkgdir/usr/share/doc/${pkgname}/AUTHORS.md"
+    install -Dm644 "${srcdir}/firmador/preguntas-frecuentes.md" "$pkgdir/usr/share/doc/${pkgname}/preguntas-frecuentes.md"
 }
