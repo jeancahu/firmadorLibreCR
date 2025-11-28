@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Firmador Libre CR
+Comment=Aplicación para firma digital de documentos en Costa Rica
+Exec=/usr/bin/firmador
+Icon=firmadorlibrecr
+Type=Application
+Terminal=false
+Categories=Utility;

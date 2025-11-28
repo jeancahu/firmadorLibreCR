@@ -1,0 +1,13 @@
+post_install() {
+    :
+}
+
+# If the package is upgraded, also show the message
+post_upgrade() {
+    post_install
+}
+
+# If the package is removed, you could show a cleanup message if necessary
+post_remove() {
+    :
+}
