@@ -21,6 +21,10 @@ aporta el fichero desktop para observar un acceso directo en menús gráficos.
 
 ### Dependencia de controladores
 
+El software como tal no depende de otros para ejecutar, sin embargo requiere que el controlador privativo
+de firma digital esté instalado, para ello seguir las
+[instrucciones para de instalación del paquete firma digital para Debian en ArchLinux](https://github.com/jeancahu/firmadigital)
+
 ### Construir el paquete a partir del GIT
 
 ```bash
