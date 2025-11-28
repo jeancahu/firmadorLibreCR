@@ -31,6 +31,7 @@ de firma digital esté instalado para funcionar como es esperado, para ello segu
 
 ```bash
 git clone https://github.com/jeancahu/firmadorLibreCR.git
+cd firmadorLibreCR
 makepkg
 ```
 

@@ -17,10 +17,10 @@ optdepends=(
 
 makedepends=(
     'imagemagick' # Dependencia para redimensionar los iconos
-    'maven'
+    'maven' # Construir el JAR en local a partir del repo
 )
 
-install=firmadorlibrecr.install
+install=firmadorlibrecr.install # Por ahora no hace nada
 options=(!strip docs libtool emptydirs !zipman staticlibs)
 source=(
     "https://codeberg.org/firmador/firmador/archive/${pkgver}.tar.gz"
@@ -34,7 +34,8 @@ md5sums=(
 )
 
 prepare() {
-    magick ${srcdir}/firmador/src/main/resources/firmador.png -resize 128x128 ${srcdir}/firmador-128.png
+    # Redimensionar la imagen del repo porque es muy grande
+    magick "${srcdir}/firmador/src/main/resources/firmador.png" -resize 128x128 "${srcdir}/firmador-128.png"
     cd firmador; mvn clean package # Crear el JAR
 }
 
@@ -43,6 +44,9 @@ package() {
     install -dm755 "$pkgdir/usr/share/applications"
     install -dm755 "$pkgdir/usr/share/icons/hicolor/128x128/apps"
     install -dm755 "$pkgdir/usr/share/java"
+    install -dm755 "$pkgdir/usr/share/doc/firmadorlibrecr/"
+    install -dm755 "$pkgdir/usr/share/licenses/firmadorlibrecr/"
+    install -dm755 "$pkgdir/usr/bin/"
 
     # Instalar el .jar
     install -Dm644 "${srcdir}/firmador/target/firmador.jar" "$pkgdir/usr/share/java/firmadorlibrecr.jar"
@@ -61,5 +65,5 @@ package() {
 
     # Docs
     install -Dm644 "${srcdir}/firmador/AUTHORS.md" "$pkgdir/usr/share/doc/firmadorlibrecr/AUTHORS.md"
-    install -Dm644 "firmador/preguntas-frecuentes.md" "$pkgdir/usr/share/doc/firmadorlibrecr/preguntas-frecuentes.md"
+    install -Dm644 "${srcdir}/firmador/preguntas-frecuentes.md" "$pkgdir/usr/share/doc/firmadorlibrecr/preguntas-frecuentes.md"
 }
