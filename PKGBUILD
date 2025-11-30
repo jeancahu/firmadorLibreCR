@@ -30,9 +30,8 @@ source=(
 md5sums=(
     'cab4acc53feb73bff375a339267ce7b5'
     '2d0fa25cb94a36ef749740a58888e027'
-    'f566046c1c6f40ba81b5e6a367bb69a7'
+    'ef138527311446d20436d67093d2162d'
 )
-
 prepare() {
     # Redimensionar la imagen del repo porque es muy grande
     magick "${srcdir}/firmador/src/main/resources/firmador.png" -resize 128x128 "${srcdir}/firmador-128.png"
